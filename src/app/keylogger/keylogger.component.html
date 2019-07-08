@@ -1,0 +1,63 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}} 
+  </div> 
+  <div id = "line" >
+      |
+  </div>
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+    <div id="sectionTitle">
+      <h1>
+        {{ title }}
+      </h1>
+    </div>
+    <div id="back">
+      <i (click)="goBack()" class="material-icons">arrow_back</i>
+    </div>
+    <div id="home">
+        <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+          <i class="material-icons">home</i>
+        </a>
+    </div>
+</div>
+<div id="container" >
+  <div id="top">
+    Czy nadzorować aktywność użytkownika {{user$.username}}?
+    <!-- {{setting$.areMessagesMonitored}} -->
+    <label class='toggle-label' >
+      <!-- <input type="checkbox" [(ngModel)]='isActive'/> -->
+      <input type="checkbox" [(ngModel)]="setting$['areMessagesMonitored']" (click)= "update(setting$.id)"/>
+        <span class='back'>
+        <span class='toggle'></span>
+        <span class='label on'>ON</span>
+        <span class='label off'>OFF</span>  
+      </span>
+    </label>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+  <!-- <p>{{isActive}}</p> -->
+  <div id="down" >
+    <div id="blue_tile" routerLink="/filters/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">settings</i> Ustawienia filtrów
+      </div>
+    </div>
+    <div id="green_tile" routerLink="/messages/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">message</i> Podgląd rejestratora 
+      </div>
+      <!-- <i class="material-icons">keyboard</i> -->
+    </div>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+</div>
+
+<router-outlet></router-outlet>

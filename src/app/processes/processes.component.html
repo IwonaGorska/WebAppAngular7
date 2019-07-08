@@ -1,0 +1,199 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}} 
+  </div>
+  <div id = "line" >
+      |
+  </div> 
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="middle0" style= "clear:both"></div>
+<div id="blockP">
+    <div  id = "bookmarkPanel" >
+      <button class = "bookmarkActive" *ngIf = "bookmark === 1">BIEŻĄCE</button> 
+      <button class = "bookmark" *ngIf = "bookmark != 1" (click)="changeBookmark(1)">BIEŻĄCE</button>
+      <button class = "bookmarkActive" *ngIf = "bookmark === 2">HISTORIA</button>
+      <button class = "bookmark" *ngIf = "bookmark != 2" (click)="changeBookmark(2)">HISTORIA</button> 
+    </div>
+    
+    <div id = "bookmark1" *ngIf = "bookmark === 1">
+      <div class = "question1" *ngIf = "!activeAndUserProcessMonitorSettings.isActiveProcessMonitored">
+        <p>Czy monitorować aktywny proces: 
+            <font color = "red" >  
+          <label  class = "label"> NIE   </label> </font> 
+          <button class = "buttons" (click)="updateActiveProcessMonitoringSettings()" >ROZPOCZNIJ</button>
+        </p>
+      </div>
+      <div  class = "question1" *ngIf = "activeAndUserProcessMonitorSettings.isActiveProcessMonitored">
+        <p>Czy monitorować aktywny proces:                                 
+          <font color = "green" >  
+          <label  class = "label" >TAK     </label> </font>
+          <button class = "buttons"  (click)="updateActiveProcessMonitoringSettings()" >ZAKOŃCZ</button>
+        </p>
+      </div>
+      <div id = "activeProcess" *ngIf = "activeAndUserProcessMonitorSettings.isActiveProcessMonitored">
+          <!-- <div id = "activeProcess" *ngIf = "activeAndUserProcessMonitorSettings.isActiveProcessMonitored"> -->
+        <style> th { border: 2px solid black; color: green;} </style>
+        <style> td { border: 1px solid black; font-size: 14px;} </style>
+        <style> caption { color: black; font-weight: 700;} </style>
+        <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+            <caption>AKTYWNY PROCES</caption>
+          <tr>
+              <th style = "width: 170px">Kiedy zebrano informację</th>
+              <th style = "width: 270px">Nazwa</th>
+              <th style = "width: 70px">Liczba wątków</th>
+              <th style = "width: 170px">Od kiedy działa</th>
+              <th style = "width: 170px">Zapis [kB]</th>
+              <th style = "width: 170px">Odczyt [kB]</th>
+          </tr> 
+          <!-- <tr *ngFor="let activeProcess of activeProcesses">
+            <td>{{activeProcess.whenInfoCollected}} </td>
+            <td>{{activeProcess.processName}}</td>
+            <td>{{activeProcess.threadsNumber}}</td>
+            <td>{{activeProcess.whenStarted}}</td>
+            <td>{{activeProcess.kilobytesEntry}}</td>
+            <td>{{activeProcess.kilobytesRead}}</td>
+          </tr> -->
+          <tr>
+            <td>{{activeProcesses.whenInfoCollected|date: 'dd/MM/yyyy, HH:mm:ss'}} </td>
+            <td>{{activeProcesses.processName}}</td>
+            <td>{{activeProcesses.threadsNumber}}</td>
+            <td>{{activeProcesses.whenStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+            <td>{{activeProcesses.kilobytesEntry}}</td>
+            <td>{{activeProcesses.kilobytesRead}}</td>
+          </tr>
+        </table>
+      </div>
+    <hr />
+
+    <div class = "question2" *ngIf = "!activeAndUserProcessMonitorSettings.areProcessesMonitored">
+        <p>Czy monitorować procesy użytkownika: 
+            <font color = "red" >  
+          <label  class = "label"> NIE   </label> </font> 
+          <button class = "buttons" (click)="updateUserProcessMonitoringSettings()" >ROZPOCZNIJ</button>
+        </p>
+      </div>
+      <div  class = "question2" *ngIf = "activeAndUserProcessMonitorSettings.areProcessesMonitored">
+        <p>Czy monitorować procesy użytkownika:                                 
+          <font color = "green" >  
+          <label  class = "label" >TAK     </label> </font>
+          <button class = "buttons"  (click)="updateUserProcessMonitoringSettings()" >ZAKOŃCZ</button>
+        </p>
+      </div>
+      <div  class = "question2" *ngIf = "activeAndUserProcessMonitorSettings.areProcessesMonitored">
+        <p> Co ile czasu zbierać informacje o procesach użytkownika:    
+          <font color = "blue" >
+            <label   class = "label" *ngIf = "activeAndUserProcessMonitorSettings.processMonitoringFrequency === 1" >{{activeAndUserProcessMonitorSettings.processMonitoringFrequency}} sekunda </label> 
+            <label   class = "label" *ngIf = "activeAndUserProcessMonitorSettings.processMonitoringFrequency > 1 && activeAndUserProcessMonitorSettings.processMonitoringFrequency < 5" >{{activeAndUserProcessMonitorSettings.processMonitoringFrequency}} sekundy </label>
+            <label   class = "label" *ngIf = "activeAndUserProcessMonitorSettings.processMonitoringFrequency >=5" >{{activeAndUserProcessMonitorSettings.processMonitoringFrequency}} sekund  </label>
+          </font> 
+          <input type="number" [(ngModel)]= 'freq' placeholder = "Nowa liczba" style="width: 90px; margin-left: 25px; margin-right: 15px"/> 
+          <button class = "buttons"  (click)="updateUserProcessMonitorFrequency()" >ZMIEŃ</button>
+        </p>
+      </div>
+      
+      <div id = "usersProcess" *ngIf = "activeAndUserProcessMonitorSettings.areProcessesMonitored">
+        <style> th { border: 2px solid black; color: green;} </style>
+        <style> td { border: 1px solid black;} </style>
+        <style> caption { color: black; font-weight: 700;} </style>
+        <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+            <caption>PROCESY UŻYTKOWNIKA</caption>
+          <tr>
+              <th style = "width: 170px">Kiedy zebrano informację</th>
+              <th style = "width: 270px">Nazwa</th>
+              <th style = "width: 70px">Liczba wątków</th>
+              <th style = "width: 170px">Od kiedy działa</th>
+              <th style = "width: 170px">Zapis [kB]</th>
+              <th style = "width: 170px">Odczyt [kB]</th>
+          </tr>
+          <tr *ngFor="let userProcess of userProcesses">
+            <td>{{userProcess.whenCollected|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+            <td>{{userProcess.processName}}</td>
+            <td>{{userProcess.threadsNumber}}</td>
+            <td>{{userProcess.whenProcessStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+            <td>{{userProcess.kilobytesEntry}}</td>
+            <td>{{userProcess.kilobytesRead}}</td>
+          </tr>
+        </table>
+        </div>
+    </div>
+
+    <div id = "bookmark1" *ngIf = "bookmark === 2">
+        <div  id = "bookmarkPanelSecond" >
+            <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 1">PROCESY AKTYWNE</button> 
+            <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 1" (click)="changeBookmarkSecond(1)">PROCESY AKTYWNE</button>
+            <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 2">PROCESY UŻYTKOWNIKA</button>
+            <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 2" (click)="changeBookmarkSecond(2)">PROCESY UŻYTKOWNIKA</button> 
+          </div>
+          <div id = "bookmarkSecond1" *ngIf = "bookmarkSecond === 1">
+            <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+                <caption>AKTYWNY PROCES</caption>
+              <tr>
+                  <th style = "width: 170px">Kiedy zebrano informację</th>
+                  <th style = "width: 270px">Nazwa</th>
+                  <th style = "width: 70px">Liczba wątków</th>
+                  <th style = "width: 170px">Od kiedy działa</th>
+                  <th style = "width: 170px">Zapis [kB]</th>
+                  <th style = "width: 170px">Odczyt [kB]</th>
+              </tr>
+              <tr *ngFor="let historyActiveProcess of historyActiveProcesses  | paginate: { itemsPerPage: 20, currentPage: p }">
+                <td>{{historyActiveProcess.whenInfoCollected|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+                <td>{{historyActiveProcess.processName}}</td>
+                <td>{{historyActiveProcess.threadsNumber}}</td>
+                <td>{{historyActiveProcess.whenStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+                <td>{{historyActiveProcess.kilobytesEntry}}</td>
+                <td>{{historyActiveProcess.kilobytesRead}}</td>
+              </tr>
+            </table>
+            <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia"
+            nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+          </div>
+          <div id = "bookmarkSecond2" *ngIf = "bookmarkSecond === 2">
+            <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+                  <caption>PROCESY UŻYTKOWNIKA</caption>
+                <tr>
+                    <th style = "width: 170px">Kiedy zebrano informację</th>
+                    <th style = "width: 270px">Nazwa</th>
+                    <th style = "width: 70px">Liczba wątków</th>
+                    <th style = "width: 170px">Od kiedy działa</th>
+                    <th style = "width: 170px">Zapis [kB]</th>
+                    <th style = "width: 170px">Odczyt [kB]</th>
+                </tr>
+                <tr *ngFor="let historyUserProcess of historyUserProcesses   | paginate: { itemsPerPage: 20, currentPage: q }">
+                  <td>{{historyUserProcess.whenCollected|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+                  <td>{{historyUserProcess.processName}}</td>
+                  <td>{{historyUserProcess.threadsNumber}}</td>
+                  <td>{{historyUserProcess.whenProcessStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+                  <td>{{historyUserProcess.kilobytesEntry}}</td>
+                  <td>{{historyUserProcess.kilobytesRead}}</td>
+                </tr>
+              </table> 
+              <pagination-controls (pageChange)="q = $event" previousLabel="Poprzednia"
+              nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+          </div>
+    </div>
+
+</div>
+
+<router-outlet></router-outlet>

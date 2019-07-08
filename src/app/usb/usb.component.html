@@ -1,0 +1,403 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}}
+  </div>
+  <div id = "line" >
+      |
+  </div> 
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="middle0" style= "clear:both"></div>
+<div id="blockUSB">
+  <div  id = "bookmarkPanel" >
+    <button class = "bookmarkActive" *ngIf = "bookmark === 1">URZĄDZENIA</button> 
+    <button class = "bookmark" *ngIf = "bookmark != 1" (click)="changeBookmark(1)">URZĄDZENIA</button>
+    <button class = "bookmarkActive" *ngIf = "bookmark === 2">WIDOCZNE DYSKI</button>
+    <button class = "bookmark" *ngIf = "bookmark != 2" (click)="changeBookmark(2)">WIDOCZNE DYSKI</button> 
+    <button class = "bookmarkActive" *ngIf = "bookmark === 3">USTAWIENIA</button> 
+    <button class = "bookmark" *ngIf = "bookmark != 3" (click)="changeBookmark(3)">USTAWIENIA</button> 
+  </div>
+
+  <div id = "bookmark1" *ngIf = "bookmark === 1">
+    <div  id = "bookmarkPanelSecond" >
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 1">BIEŻĄCE</button> 
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 1" (click)="changeBookmarkSecond(1)">BIEŻĄCE</button>
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 2">HISTORIA</button>
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 2" (click)="changeBookmarkSecond(2)">HISTORIA</button> 
+    </div>
+    <div *ngIf = "bookmarkSecond === 1">
+      <div class="filtr">
+        <div class="refresh">
+            <i class="material-icons" (click)=reset(1)>cached</i>
+        </div>
+        <input class= "input" type="text" [(ngModel)]='query1' placeholder= "Wyszukaj frazę"/>
+        <button class= "search" (click)=search(1)>Szukaj</button>
+        <div class="middle" style= "clear:both"></div>
+      </div>
+      <style> th { border: 2px solid black; color: green;} </style>
+      <style> td { border: 1px solid black; word-break:break-all; word-wrap:break-word;} </style>
+      <style> caption { color: black; font-weight: 700;} </style>
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>URZĄDZENIA</caption>
+        <tr>
+            <th style = "width: 110px">Nazwa</th>
+            <th style = "width: 90px">Data operacji</th>
+            <th style = "width: 160px">Rozpoznany jako/Producent</th>
+            <th style = "width: 55px">Status operacji</th>
+            <th style = "width: 260px">Opis/Typ</th>
+            <!-- <th style = "width: 100px">Producent</th> -->
+            <th style = "width: 140px">ID</th>
+            <th style = "width: 110px">GUID</th>
+            <!-- <th style = "width: 65px">Typ</th> -->
+        </tr>
+        <tr *ngFor="let allCurrentDevice of allCurrentDevices | paginate: { itemsPerPage: 20, currentPage: p }">
+          <td >{{allCurrentDevice.deviceName}}</td>
+          <td >{{allCurrentDevice.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+          <td >{{allCurrentDevice.recognizedAs}}/ {{allCurrentDevice.producer}}</td>
+          <td >{{allCurrentDevice.operationStatus}}</td>
+          <td *ngIf = "allCurrentDevice.description === allCurrentDevice.deviceType">
+            {{allCurrentDevice.description}}
+          </td>
+          <td *ngIf = "!(allCurrentDevice.description === allCurrentDevice.deviceType)">
+              {{allCurrentDevice.description}}/ {{allCurrentDevice.deviceType}}
+            </td>
+          <!-- <td >{{allCurrentDevice.producer}}</td> -->
+          <td >{{allCurrentDevice.deviceId}}</td>
+          <td >{{allCurrentDevice.deviceGUID}}</td>
+          <!-- <td >{{allCurrentDevice.deviceType}}</td> -->
+        </tr>
+      </table>
+      <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+    <div *ngIf = "bookmarkSecond === 2">
+      <div class="filtr">
+        <div class="refresh">
+            <i class="material-icons" (click)=reset(2)>cached</i>
+        </div>
+        <input class= "input" type="text" [(ngModel)]='query2' placeholder= "Wyszukaj frazę"/>
+        <button class= "search" (click)=search(2)>Szukaj</button>
+        <div class="middle" style= "clear:both"></div>
+      </div>
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>URZĄDZENIA</caption>
+          <tr>
+            <th style = "width: 110px">Nazwa</th>
+            <th style = "width: 90px">Data operacji</th>
+            <th style = "width: 160px">Rozpoznany jako/Producent</th>
+            <th style = "width: 55px">Status operacji</th>
+            <th style = "width: 260px">Opis/Typ</th>
+            <!-- <th style = "width: 100px">Producent</th> -->
+            <th style = "width: 140px">ID</th>
+            <th style = "width: 110px">GUID</th>
+            <!-- <th style = "width: 65px">Typ</th> -->
+        </tr>
+        <tr *ngFor="let allHistoryDevice of allHistoryDevices | paginate: { itemsPerPage: 20, currentPage: q }">
+          <td >{{allHistoryDevice.deviceName}}</td>
+          <td >{{allHistoryDevice.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+          <td >{{allHistoryDevice.recognizedAs}}/ {{allHistoryDevice.producer}}</td>
+          <td >{{allHistoryDevice.operationStatus}}</td>
+          <td *ngIf = "allHistoryDevice.description === allHistoryDevice.deviceType">
+            {{allHistoryDevice.description}}
+          </td>
+          <td *ngIf = "!(allHistoryDevice.description === allHistoryDevice.deviceType)">
+              {{allHistoryDevice.description}}/ {{allHistoryDevice.deviceType}}
+            </td>
+          <!-- <td >{{allHistoryDevice.producer}}</td> -->
+          <td >{{allHistoryDevice.deviceId}}</td>
+          <td >{{allHistoryDevice.deviceGUID}}</td>
+          <!-- <td >{{allHistoryDevice.deviceType}}</td> -->
+        </tr>
+      </table>
+      <pagination-controls (pageChange)="q = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+  </div>
+
+  <div id = "bookmark2" *ngIf = "bookmark === 2">
+    <div  id = "bookmarkPanelThird" >
+      <button class = "bookmarkActiveThird" *ngIf = "bookmarkThird === 1">BIEŻĄCE</button> 
+      <button class = "bookmarkThird" *ngIf = "bookmarkThird != 1" (click)="changeBookmarkThird(1)">BIEŻĄCE</button>
+      <button class = "bookmarkActiveThird" *ngIf = "bookmarkThird === 2">HISTORIA</button>
+      <button class = "bookmarkThird" *ngIf = "bookmarkThird != 2" (click)="changeBookmarkThird(2)">HISTORIA</button> 
+    </div>
+    <div *ngIf = "bookmarkThird === 1">
+      <div class="filtr">
+        <div class="refresh">
+            <i class="material-icons" (click)=reset(3)>cached</i>
+        </div>
+        <input class= "input" type="text" [(ngModel)]='query3' placeholder= "Wyszukaj frazę"/>
+        <button class= "search" (click)=search(3)>Szukaj</button>
+        <div class="middle" style= "clear:both"></div>
+      </div>
+      <style> th { border: 2px solid black; color: green;} </style>
+      <style> td { border: 1px solid black; font-size: 14px;} </style>
+      <style> caption { color: black; font-weight: 700; } </style>
+      <!-- <table style = "width: 1000px"> -->
+        <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>WIDOCZNE DYSKI</caption>
+          <tr>
+            <th style = "width: 100px">Nazwa</th>
+            <th style = "width: 100px">Data operacji</th>
+            <th style = "width: 100px">Rozpoznany jako</th>
+            <th style = "width: 80px">Status operacji</th>
+            <th style = "width: 190px">Opis</th>
+            <th style = "width: 80px">System plików</th>
+            <th style = "width: 100px">Wolna pamięć</th>
+            <th style = "width: 50px">Całkowita pamięć</th>
+            <th style = "width: 100px">Nazwa woluminu</th>
+            <th style = "width: 50px">ID woluminu</th>
+            <th style = "width: 50px">Wyniki skanowania</th>
+        </tr>
+        <tr *ngFor="let allCurrentDrive of allCurrentDrives">
+          <td>{{allCurrentDrive.driveName}}</td>
+          <td>{{allCurrentDrive.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+          <td>{{allCurrentDrive.recognizedAs}}</td>
+          <td>{{allCurrentDrive.operationStatus}}</td>
+          <td>{{allCurrentDrive.description}}</td>
+          <td>{{allCurrentDrive.fileSystem}}</td>
+          <td>{{allCurrentDrive.freeSpace}}</td>
+          <td>{{allCurrentDrive.totalSpace}}</td>
+          <td>{{allCurrentDrive.volumeId}}</td>
+          <td>{{allCurrentDrive.volumeName}}</td>
+          <!-- <td> <button id = "see" (click) = "show('pierwszy')">POKAŻ</button></td> -->
+          <td> <button id = "see" (click) = "showCurrentFiles(allCurrentDrive.id, allCurrentDrive.driveName)">POKAŻ</button></td>
+        </tr>
+        <!-- <tr>
+          <td>drugi</td>
+          <td>cos2</td>
+          <td>cos1</td>
+          <td>cos2</td>
+          <td>cos1</td>
+          <td>cos2</td>
+          <td>cos2</td>
+          <td>cos1</td>
+          <td>cos2</td>
+          <td>cos2</td>
+          <td> <button id = "see"  (click) = "show('drugi')">POKAŻ</button></td>
+        </tr> -->
+      </table>
+
+      <!-- <style> th { border: 2px solid rgb(12, 221, 158); color: rgb(218, 197, 12);} </style>
+      <style> td { border: 1px solid rgb(12, 221, 158);} </style>
+      <style> caption { color: rgb(12, 221, 158); font-weight: 700;} </style> -->
+      <div id = "scan">
+        <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;" *ngIf = "is2">
+            <caption>WYNIKI SKANOWANIA DYSKU {{showName}} </caption>
+          <tr>
+              <th style = "width: 160px">Nazwa pliku</th>
+              <th style = "width: 200px">Ścieżka pliku</th>
+              <th style = "width: 120px">Typ pliku</th>
+              <th style = "width: 120px">Czy binarny</th>
+              <th style = "width: 100px">Rozszerzenie</th>
+              <th style = "width: 140px">Rozmiar</th>
+              <th style = "width: 140px">Data operacji</th>
+          </tr>
+          <tr *ngFor="let driveFile of driveFiles">
+              <td>{{driveFile.fileName}}</td>
+              <td>{{driveFile.filePath}}</td>
+              <td>{{driveFile.fileType}}</td>
+              <td *ngIf = "driveFile.isBinary === 0">NIE</td>
+              <td *ngIf = "driveFile.isBinary === 1">TAK</td>
+              <td>{{driveFile.extension}}</td>
+              <td>{{driveFile.size}}</td>
+              <td>{{driveFile.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+      <div *ngIf = "bookmarkThird === 2">
+        <div class="filtr">
+          <div class="refresh">
+              <i class="material-icons" (click)=reset(4)>cached</i>
+          </div>
+          <input class= "input" type="text" [(ngModel)]='query4' placeholder= "Wyszukaj frazę"/>
+          <button class= "search" (click)=search(4)>Szukaj</button>
+          <div class="middle" style= "clear:both"></div>
+        </div>
+        <div  id = "NotFileDesign" *ngIf = "!fileDesign">
+          <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+              <caption>WIDOCZNE DYSKI</caption>
+            <tr>
+                <th style = "width: 70px">Nazwa</th>
+                <th style = "width: 100px">Data operacji</th>
+                <th style = "width: 110px">Rozpoznany jako</th>
+                <th style = "width: 100px">Status operacji</th>
+                <th style = "width: 190px">Opis</th>
+                <th style = "width: 90px">System plików</th>
+                <th style = "width: 90px">Wolna pamięć</th>
+                <th style = "width: 50px">Całkowita pamięć</th>
+                <th style = "width: 100px">Nazwa woluminu</th>
+                <th style = "width: 50px">ID woluminu</th>
+                <th style = "width: 50px">Wyniki skanowania</th>
+            </tr>
+            <tr *ngFor="let allHistoryDrive of allHistoryDrives  | paginate: { itemsPerPage: 20, currentPage: r }">
+              <td>{{allHistoryDrive.driveName}}</td>
+              <td>{{allHistoryDrive.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+              <td>{{allHistoryDrive.recognizedAs}}</td>
+              <td>{{allHistoryDrive.operationStatus}}</td>
+              <td>{{allHistoryDrive.description}}</td>
+              <td>{{allHistoryDrive.fileSystem}}</td>
+              <td>{{allHistoryDrive.freeSpace}}</td>
+              <td>{{allHistoryDrive.totalSpace}}</td>
+              <td>{{allHistoryDrive.volumeId}}</td>
+              <td>{{allHistoryDrive.volumeName}}</td>
+              <td> <button id = "see" (click) = "showHistoryFiles(allHistoryDrive.id, allHistoryDrive.driveName)">POKAŻ</button></td>
+            </tr>
+            <!-- <tr>
+              <td>drugi</td>
+              <td>cos2</td>
+              <td>cos1</td>
+              <td>cos2</td>
+              <td>cos1</td>
+              <td>cos2</td>
+              <td>cos2</td>
+              <td>cos1</td>
+              <td>cos2</td>
+              <td>cos2</td>
+              <td> <button id = "see"  (click) = "turnOnFileDesign(0)">POKAŻ</button></td>
+            </tr> -->
+          </table>
+          <pagination-controls (pageChange)="r = $event" previousLabel="Poprzednia"
+          nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+        </div>
+        <div  id = "FileDesign" *ngIf = "fileDesign">
+          <div id = "backDesign">
+            <label id = "info">Jesteś w widoku podglądu zawartości wybranego dysku</label>
+            <button id = "backdesignBtn" (click) = "turnOffFileDesign()"> POWRÓT</button>
+          </div>
+          <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+              <caption>WYNIKI SKANOWANIA DYSKU {{showNameHistoric}} </caption>
+            <tr>
+                <th style = "width: 160px">Nazwa pliku</th>
+                <th style = "width: 200px">Ścieżka pliku</th>
+                <th style = "width: 120px">Typ pliku</th>
+                <th style = "width: 120px">Czy binarny</th>
+                <th style = "width: 100px">Rozszerzenie</th>
+                <th style = "width: 140px">Rozmiar</th>
+                <th style = "width: 140px">Data operacji</th>
+            </tr>
+            <tr *ngFor="let historyDriveFile of historyDriveFiles   | paginate: { itemsPerPage: 20, currentPage: s }">
+              <td>{{historyDriveFile.fileName}}</td>
+              <td>{{historyDriveFile.filePath}}</td>
+              <td>{{historyDriveFile.fileType}}</td>
+              <td *ngIf = "historyDriveFile.isBinary === 0">NIE</td>
+              <td *ngIf = "historyDriveFile.isBinary === 1">TAK</td>
+              <td>{{historyDriveFile.extension}}</td>
+              <td>{{historyDriveFile.size}}</td>
+              <td>{{historyDriveFile.operationDate|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+            </tr>
+          </table>
+          <pagination-controls (pageChange)="s = $event" previousLabel="Poprzednia"
+          nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+        </div>
+      </div>
+    
+    <div *ngIf = "bookmarkThird === 1">
+      <label class = "information" *ngIf = "!is2">Obecnie nie śledzisz dysków zdalnych, możesz to zmienić w zakładce "USTAWIENIA".</label>
+    </div>
+  </div>
+
+  <div id = "bookmark3" *ngIf = "bookmark === 3">
+    <!-- <div class = "question1" *ngIf = "!is1"> -->
+        <div class = "question1" *ngIf = "!USBBlockSettings.blockPorts">
+      <p>Czy blokować porty USB: 
+          <font color = "red" >  
+        <label  class = "label"> NIE   </label> </font> 
+        <!-- <button class = "buttons" (click)="change1()" >ROZPOCZNIJ</button> -->
+        <button class = "buttons" (click)="updateUSBBlockingSettings()" >ROZPOCZNIJ</button>
+      </p>
+    </div>
+    <div  class = "question1" *ngIf = "USBBlockSettings.blockPorts">
+      <p>Czy blokować porty USB:                                   
+        <font color = "green" >  
+        <label  class = "label" >TAK     </label> </font>
+        <button class = "buttons"  (click)="updateUSBBlockingSettings()" >ZAKOŃCZ</button>
+      </p>
+    </div>
+
+    <div class = "question1" *ngIf = "!remoteMemoryMonitorAndScanSettings.isMonitored">
+      <p>Czy śledzić pamięć zdalną: 
+          <font color = "red" >  
+        <label  class = "label"> NIE   </label> </font> 
+        <button class = "buttons" (click)="updateRemoteMemoryMonitoringSettings()" >ROZPOCZNIJ</button>
+      </p>
+    </div>
+    <div  class = "question1" *ngIf = "remoteMemoryMonitorAndScanSettings.isMonitored">
+      <p>Czy śledzić pamięć zdalną:                                   
+        <font color = "green" >  
+        <label  class = "label" >TAK     </label> </font>
+        <button class = "buttons"  (click)="updateRemoteMemoryMonitoringSettings()" >ZAKOŃCZ</button>
+      </p>
+    </div>
+
+    <div class = "question1" *ngIf = "!remoteMemoryMonitorAndScanSettings.isScaned">
+      <p>Czy skanować pamięć zdalną: 
+          <font color = "red" >  
+        <label  class = "label"> NIE   </label> </font> 
+        <button class = "buttons" (click)="updateRemoteMemoryScaningSettings()" >ROZPOCZNIJ</button>
+      </p>
+    </div>
+    <div  class = "question1" *ngIf = "remoteMemoryMonitorAndScanSettings.isScaned">
+      <p>Czy skanować pamięć zdalną:                                   
+        <font color = "green" >  
+        <label  class = "label" >TAK     </label> </font>
+        <button class = "buttons"  (click)="updateRemoteMemoryScaningSettings()" >ZAKOŃCZ</button>
+      </p>
+    </div>
+
+    <div class = "question1" *ngIf = "!discMonitorAndScanSettings.isMonitored">
+      <p>Czy śledzić napęd CD/DVD: 
+          <font color = "red" >  
+        <label  class = "label"> NIE   </label> </font> 
+        <button class = "buttons" (click)="updateDiscMonitoringSettings()" >ROZPOCZNIJ</button>
+      </p>
+    </div>
+    <div  class = "question1" *ngIf = "discMonitorAndScanSettings.isMonitored">
+      <p>Czy śledzić napęd CD/DVD:                                   
+        <font color = "green" >  
+        <label  class = "label" >TAK     </label> </font>
+        <button class = "buttons"  (click)="updateDiscMonitoringSettings()" >ZAKOŃCZ</button>
+      </p>
+    </div>
+
+    <div class = "question1" *ngIf = "!discMonitorAndScanSettings.isScaned">
+      <p>Czy skanować napęd CD/DVD: 
+          <font color = "red" >  
+        <label  class = "label"> NIE   </label> </font> 
+        <button class = "buttons" (click)="updateDiscScaningSettings()" >ROZPOCZNIJ</button>
+      </p>
+    </div>
+    <div  class = "question1" *ngIf = "discMonitorAndScanSettings.isScaned">
+      <p>Czy skanować napęd CD/DVD:                                   
+        <font color = "green" >  
+        <label  class = "label" >TAK     </label> </font>
+        <button class = "buttons"  (click)="updateDiscScaningSettings()" >ZAKOŃCZ</button>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>

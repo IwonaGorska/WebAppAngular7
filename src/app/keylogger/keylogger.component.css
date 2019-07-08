@@ -1,0 +1,133 @@
+#container
+{
+  height: 430px;
+}
+
+#blue_tile{
+  background-color: #1552ad;
+  width: 380px;
+  height: 70px;
+  float: left;
+  margin: 20px;
+  box-shadow:inset 0 0 80px #000000;
+  padding-top: 60px;
+  /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+  text-decoration-line: overline;
+  background-image: url('ustawienia_filtrow1.jpg');
+  /* color: blanchedalmond; */
+  color: rgb(8, 165, 3);
+}
+
+#blue_tile:hover
+{
+  box-shadow:inset 0 0 10px #000000;
+  cursor:pointer;
+}
+
+#green_tile{
+  background-color: #5aa11f;
+  width: 380px;
+  height: 70px;
+  float: left;
+  margin: 20px;
+  box-shadow:inset 0 0 80px #000000;
+  padding-top: 60px;
+  /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+  text-decoration-line: overline; 
+  background-image: url('monitorowanie3.jpg');
+  /* color: blanchedalmond; */
+  color: rgb(8, 165, 3);
+}
+
+#green_tile:hover
+{
+  box-shadow:inset 0 0 10px #000000;
+  cursor:pointer;
+}
+
+
+.middle
+{
+  width: 800px;
+  height: 5px;
+}
+
+#top
+{
+  width: 980px;
+  height: 100px;
+  padding: 10px;
+}
+
+#down
+{
+  width: 850px;
+  height: 150px;
+  margin-left: 75px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.toggle-label {
+  position: relative;
+  display: block;
+  width: 240px;
+  height: 80px;
+  margin-top: 8px;
+  border: 1px solid #808080;
+  margin:  20px auto;
+}
+.toggle-label input[type=checkbox] { 
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.toggle-label input[type=checkbox]+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ed1c24;
+  transition: background 150ms linear;  
+}
+.toggle-label input[type=checkbox]:checked+.back {
+  background: #00a651; /*green*/
+}
+
+.toggle-label input[type=checkbox]+.back .toggle {
+  display: block;
+  position: absolute;
+  content: ' ';
+  background: #fff;
+  width: 50%; 
+  height: 100%;
+  transition: margin 80ms linear;
+  border: 1px solid #808080;
+  border-radius: 0;
+}
+.toggle-label input[type=checkbox]:checked+.back .toggle {
+  margin-left: 120px;
+}
+.toggle-label .label {
+  display: block;
+  position: absolute;
+  width: 50%;
+  color: #ddd;
+  line-height: 80px;
+  text-align: center;
+  font-size: 2em;
+}
+.toggle-label .label.on { left: 0px; }
+.toggle-label .label.off { right: 0px; }
+
+.toggle-label input[type=checkbox]:checked+.back .label.on {
+  color: #fff;
+}
+.toggle-label input[type=checkbox]+.back .label.off {
+  color: #fff;
+}
+.toggle-label input[type=checkbox]:checked+.back .label.off {
+  color: #ddd;
+}

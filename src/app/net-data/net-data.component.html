@@ -1,0 +1,190 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}} 
+  </div> 
+  <div id = "line" >
+      |
+  </div>
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+  <div id="middle0" style= "clear:both"></div>
+
+<div id = "blockNet">
+  <div  id = "bookmarkPanel" >
+    <button class = "bookmarkActive" *ngIf = "bookmark === 2">BIEŻĄCE</button> 
+    <button class = "bookmark" *ngIf = "bookmark != 2" (click)="changeBookmark(2)">BIEŻĄCE</button>
+    <button class = "bookmarkActive" *ngIf = "bookmark === 1">HISTORIA</button>
+    <button class = "bookmark" *ngIf = "bookmark != 1" (click)="changeBookmark(1)">HISTORIA</button> 
+  </div>
+  <div id = "bookmark1" *ngIf = "bookmark === 2">
+    <div class="part"><h2>Transfer obecny</h2></div>
+    <!-- <div class = "textpart" *ngIf = "transfer.uploadSpeed < 1024" >Prędkość wysyłania: {{transfer.uploadSpeed}} b/s</div>
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed >= 1024 && transfer.uploadSpeed < 1024*1024" >Prędkość wysyłania: {{calculate(transfer.uploadSpeed, 1)}} kb/s</div>
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed >= 1024*1024 && transfer.uploadSpeed < 1024*1024*1024" >Prędkość wysyłania: {{calculate(transfer.uploadSpeed, 2)}} Mb/s</div>
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed >= 1024*1024*1024 && transfer.uploadSpeed < 1024*1024*1024*1024" >Prędkość wysyłania: {{calculate(transfer.uploadSpeed, 3)}} Gb/s</div> -->
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed < 1024" >Prędkość wysyłania: {{transfer.uploadSpeed}} kb/s</div>
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed >= 1024 && transfer.uploadSpeed < 1024*1024" >Prędkość wysyłania: {{calculate(transfer.uploadSpeed, 1)}} Mb/s</div>
+    <div class = "textpart" *ngIf = "transfer.uploadSpeed >= 1024*1024 && transfer.uploadSpeed < 1024*1024*1024" >Prędkość wysyłania: {{calculate(transfer.uploadSpeed, 2)}} Gb/s</div>
+
+    <!-- <div class = "textpart" *ngIf = "transfer.downloadSpeed < 1024" >Prędkość pobierania: {{transfer.downloadSpeed}} b/s</div>
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed >= 1024 && transfer.downloadSpeed < 1024*1024" >Prędkość pobierania: {{calculate(transfer.downloadSpeed, 1)}} kb/s</div>
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed >= 1024*1024 && transfer.downloadSpeed < 1024*1024*1024" >Prędkość pobierania: {{calculate(transfer.downloadSpeed, 2)}} Mb/s</div>
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed >= 1024*1024*1024 && transfer.downloadSpeed < 1024*1024*1024*1024" >Prędkość pobierania: {{calculate(transfer.downloadSpeed, 3)}} Gb/s</div> -->
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed < 1024" >Prędkość pobierania: {{transfer.downloadSpeed}} kb/s</div>
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed >= 1024 && transfer.downloadSpeed < 1024*1024" >Prędkość pobierania: {{calculate(transfer.downloadSpeed, 1)}} Mb/s</div>
+    <div class = "textpart" *ngIf = "transfer.downloadSpeed >= 1024*1024 && transfer.downloadSpeed < 1024*1024*1024" >Prędkość pobierania: {{calculate(transfer.downloadSpeed, 2)}} Gb/s</div>
+    <div class = "textpart">Kiedy rozpoczęto pomiar: {{transfer.whenStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</div>
+
+    <div class="part"><h2>Transfer od włączenia komputera</h2></div>
+    <!-- <div class = "textpart">Ilość wysłanych danych: </div> -->
+    <!-- <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB < 1024" >Ilość wysłanych danych: {{transferSinceComputerStarted.uploadedKB}} b</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB >= 1024 && transferSinceComputerStarted.uploadedKB < 1024*1024" >Ilość wysłanych danych: {{calculate(transferSinceComputerStarted.uploadedKB, 1)}} kb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB >= 1024*1024 && transferSinceComputerStarted.uploadedKB < 1024*1024*1024" >Ilość wysłanych danych: {{calculate(transferSinceComputerStarted.uploadedKB, 2)}} Mb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB >= 1024*1024*1024 && transferSinceComputerStarted.uploadedKB < 1024*1024*1024*1024" >Ilość wysłanych danych: {{calculate(transferSinceComputerStarted.uploadedKB, 3)}} Gb</div> -->
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB < 1024" >Ilość wysłanych danych: {{transferSinceComputerStarted.uploadedKB}} kb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB >= 1024 && transferSinceComputerStarted.uploadedKB < 1024*1024" >Ilość wysłanych danych: {{calculate(transferSinceComputerStarted.uploadedKB, 1)}} Mb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.uploadedKB >= 1024*1024 && transferSinceComputerStarted.uploadedKB < 1024*1024*1024" >Ilość wysłanych danych: {{calculate(transferSinceComputerStarted.uploadedKB, 2)}} Gb</div>
+    <!-- <div class = "textpart">Ilość pobranych danych: </div> -->
+    <!-- <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB < 1024" >Ilość pobranych danych: {{transferSinceComputerStarted.downloadedKB}} b</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB >= 1024 && transferSinceComputerStarted.downloadedKB < 1024*1024" >Ilość pobranych danych: {{calculate(transferSinceComputerStarted.downloadedKB, 1)}} kb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB >= 1024*1024 && transferSinceComputerStarted.downloadedKB < 1024*1024*1024" >Ilość pobranych danych: {{calculate(transferSinceComputerStarted.downloadedKB, 2)}} Mb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB >= 1024*1024*1024 && transferSinceComputerStarted.downloadedKB < 1024*1024*1024*1024" >Ilość pobranych danych: {{calculate(transferSinceComputerStarted.downloadedKB, 3)}} Gb</div> -->
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB < 1024" >Ilość pobranych danych: {{transferSinceComputerStarted.downloadedKB}} kb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB >= 1024 && transferSinceComputerStarted.downloadedKB < 1024*1024" >Ilość pobranych danych: {{calculate(transferSinceComputerStarted.downloadedKB, 1)}} Mb</div>
+    <div class = "textpart" *ngIf = "transferSinceComputerStarted.downloadedKB >= 1024*1024 && transferSinceComputerStarted.downloadedKB < 1024*1024*1024" >Ilość pobranych danych: {{calculate(transferSinceComputerStarted.downloadedKB, 2)}} Gb</div>
+    <div class = "textpart">Kiedy rozpoczęto pomiar: {{transferSinceComputerStarted.monitorTimestamp|date: 'dd/MM/yyyy, HH:mm:ss'}}</div>
+    <div class="part"><h2>Stan połączenia internetowego</h2></div>
+    <div class = "textpart">Wyniki testu łącza: {{ping.pingMeasurementInMs}} ms </div>
+    <div class = "textpart">Adres używany do sprawdzania połączenia: {{ping.address}}</div>
+    <div class = "textpart">Kiedy rozpoczęto pomiar: {{ping.monitorTimestamp|date: 'dd/MM/yyyy, HH:mm:ss'}}</div>
+    <div class="part"><h2>Informacje o karcie sieciowej</h2></div>
+    <div class = "textpart">Interfejs sieciowy: {{card.ineterface}}</div>
+    <div class = "textpart">Adres MAC: {{card.mac}}</div>
+    <div class = "textpart">Adres IP: {{card.ip}}</div>
+    <div class = "textpart">Maska: {{card.mask}}</div>
+    <div class = "textpart">Adres broadcast: {{card.broadcast}}</div>
+    <div class = "textpart">Kiedy zebrano informację: {{card.whenInfoCollected|date: 'dd/MM/yyyy, HH:mm:ss'}}</div>
+  </div>
+  <div id = "bookmark1" *ngIf = "bookmark === 1">
+    <div  id = "bookmarkPanelSecond" >
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 1">TRANSFER OBECNY</button> 
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 1" (click)="changeBookmarkSecond(1)">TRANSFER OBECNY</button>
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 2">TRANSFER</button>
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 2" (click)="changeBookmarkSecond(2)">TRANSFER</button>
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 3">STAN POŁĄCZENIA</button> 
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 3" (click)="changeBookmarkSecond(3)">STAN POŁĄCZENIA</button>
+      <button class = "bookmarkActiveSecond" *ngIf = "bookmarkSecond === 4">KARTA SIECIOWA</button>
+      <button class = "bookmarkSecond" *ngIf = "bookmarkSecond != 4" (click)="changeBookmarkSecond(4)">KARTA SIECIOWA</button> 
+    </div>
+    <div class = "areaSecond" *ngIf = "bookmarkSecond === 1">
+      <style> th { border: 2px solid black; color: green;} </style>
+      <style> td { border: 1px solid black; font-size: 13px;} </style>
+      <style> caption { color: black; font-weight: 700; } </style>
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>TRANSFER OBECNY</caption>
+        <tr>
+          <th style = "width: 300px">Prędkość wysyłania [kB/s]</th>
+          <th style = "width: 300px">Prędkość pobierania [kB/s]</th>
+          <!-- <th style = "width: 300px">Prędkość wysyłania [MB/s]</th>
+          <th style = "width: 300px">Prędkość pobierania [MB/s]</th> -->
+          <th style = "width: 300px">Kiedy rozpoczęto pomiar</th>
+        </tr>
+        <tr *ngFor="let historyTransfer of historyTransfers | paginate: { itemsPerPage: 20, currentPage: p }">
+          <td>{{historyTransfer.uploadSpeed}}</td>
+          <!-- <td>{{calculate(historyTransfer.uploadSpeed, 2)}}</td> -->
+          <td>{{historyTransfer.downloadSpeed}}</td>
+          <!-- <td>{{calculate(historyTransfer.downloadSpeed, 2)}}</td> -->
+          <td>{{historyTransfer.whenStarted|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+        </tr>
+      </table>
+      <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+    <div class = "areaSecond" *ngIf = "bookmarkSecond === 2">
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>TRANSFER OD WŁĄCZENIA KOMPUTERA</caption>
+        <tr>
+          <!-- <th style = "width: 300px">Ilość wysłanych danych [kB]</th>
+          <th style = "width: 300px">Ilość pobranych danych [kB]</th> -->
+          <th style = "width: 300px">Ilość wysłanych danych [MB]</th>
+          <th style = "width: 300px">Ilość pobranych danych [MB]</th>
+          <th style = "width: 300px">Kiedy rozpoczęto pomiar</th>
+        </tr>
+        <tr *ngFor="let historySinceComputerStartedTransfer of historySinceComputerStartedTransfers | paginate: { itemsPerPage: 20, currentPage: r }">
+          <!-- <td>{{historySinceComputerStartedTransfer.uploadedKB}}</td> -->
+          <td>{{calculate(historySinceComputerStartedTransfer.uploadedKB, 1)}}</td>
+          <!-- <td>{{historySinceComputerStartedTransfer.downloadedKB}}</td> -->
+          <td>{{calculate(historySinceComputerStartedTransfer.downloadedKB, 1)}}</td>
+          <td>{{historySinceComputerStartedTransfer.monitorTimestamp|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+        </tr>
+      </table> 
+      <pagination-controls (pageChange)="r = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+    <div class = "areaSecond" *ngIf = "bookmarkSecond === 3">
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>STAN POŁĄCZENIA INTERNETOWEGO</caption>
+        <tr>
+          <th style = "width: 300px">Wyniki testu łącza [ms]</th>
+          <th style = "width: 300px">Adres używany do sprawdzania połączenia</th>
+          <th style = "width: 300px">Kiedy rozpoczęto pomiar</th>
+        </tr>
+        <tr *ngFor="let historyPing of historyPings | paginate: { itemsPerPage: 20, currentPage: s}">
+          <td>{{historyPing.pingMeasurementInMs}}</td>
+          <td>{{historyPing.address}}</td>
+          <td>{{historyPing.monitorTimestamp|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+        </tr>
+      </table> 
+      <pagination-controls (pageChange)="s = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+    <div class = "areaSecond" *ngIf = "bookmarkSecond === 4">
+      <table style = "border: 1px solid black; border-collapse: collapse; font-weight: 700;">
+          <caption>INFORMACJE O KARCIE SIECIOWEJ</caption>
+        <tr>
+          <th style = "width: 300px">Interfejs sieciowy</th>
+          <th style = "width: 300px">Adres MAC</th>
+          <th style = "width: 300px">Adres IP</th>
+          <th style = "width: 300px">Maska</th>
+          <th style = "width: 300px">Adres broadcast</th>
+          <th style = "width: 300px">Kiedy zebrano informację</th>
+        </tr>
+        <tr *ngFor="let historyCard of historyCards | paginate: { itemsPerPage: 20, currentPage: t }">
+          <td>{{historyCard.ineterface}}</td>
+          <td>{{historyCard.mac}}</td>
+          <td>{{historyCard.ip}}</td>
+          <td>{{historyCard.mask}}</td>
+          <td>{{historyCard.broadcast}}</td>
+          <td>{{historyCard.whenInfoCollected|date: 'dd/MM/yyyy, HH:mm:ss'}}</td>
+        </tr>
+      </table> 
+      <pagination-controls (pageChange)="t = $event" previousLabel="Poprzednia"
+      nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+    </div>
+
+  </div>
+</div>
+<div id = "space" ></div>
+
+

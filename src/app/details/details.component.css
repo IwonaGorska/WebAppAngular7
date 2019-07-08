@@ -1,0 +1,239 @@
+﻿#tracked
+{
+  opacity: 0;
+}
+
+#container
+{
+  height: 440px;  
+  /* background-color: #5e3981;  */
+}
+
+#username
+{
+  width: 940px;
+  letter-spacing: 2px;
+  float: left;
+  font-size: 15px;
+}
+
+/* #top
+{
+  width: 850px;
+  height: 170px;
+  text-align: center;
+  margin-left: 75px;
+} */
+
+#top
+{
+  width: 850px;
+  height: 140px;
+  margin-left: 75px;
+  /* background-color: #920b16; */
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#down
+{
+  width: 850px;
+  height: 140px;
+  margin-left: 75px;
+  /* background-color: #930aa0; */
+  /* margin-top: 20px; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#secondDown
+{
+  /* width: 1000px;
+  height: 130px;
+  margin-left: 75px;
+  margin-bottom: 5px;
+  margin-top: 5px; */
+  width: 850px;
+  height: 140px;
+  margin-left: 75px;
+  /* background-color: #16cc1f; */
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.middle
+{
+  width: 800px;
+  height: 5px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background-color: aqua; */
+}
+
+.black
+{
+  background-color: #000000ab;
+  width:300px;
+  margin:auto;
+}
+/* #middle1
+{
+  width: 800px;
+  height: 10px;
+}
+#middle2
+{
+  width: 800px;
+  height: 10px;
+} */
+
+#red_tile{
+    background-color: #7f3f3f;
+    width: 380px;
+    /* width: 460px; */
+    height: 70px;
+    float: left;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+    /*display:table-cell;
+    vertical-align:middle;*/
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('dane_komputerowe1.jpg');
+    /* color: blanchedalmond; */
+  } 
+
+  #red_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor: pointer;
+  }
+
+  #green_tile{
+    background-color: #326647;
+    width: 380px;
+    height: 70px;
+    float: left;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+    
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('pamiec.jpg');
+    color: blanchedalmond;
+  }
+
+  #green_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor: pointer;
+  }
+
+  #gold_tile{
+    /* background-color: #aa8213; */
+    width: 380px;
+    height: 70px;
+    float: left;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    /* box-shadow:inset 0 0 80px #000000; */
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('polaczenie_internetowe_5.jpg');
+    color: blanchedalmond;
+  }
+
+  #gold_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor:pointer;
+  }
+
+  #purple_tile{
+    background-color: #5e3981;
+    width: 380px;
+    height: 70px;
+    float: left;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('monitorowanie_1.jpg');
+    color: blanchedalmond;
+  }
+
+  #purple_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor:pointer;
+  }
+
+  #orange_tile{
+    background-color: #db6809;
+    width: 380px;
+    height: 70px;
+    float: left;
+    /* margin: 20px; */ margin-left: 235px; /*850/2 - 380/2 = 425 - 190 = 325 - 90 = 235*/
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('processes.jpg');
+    color: blanchedalmond;
+  }
+
+  #orange_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor:pointer;
+  }
+
+  #orange2_tile{
+    background-color: #db6809;
+    width: 380px;
+    height: 70px;
+    float: left;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow:inset 0 0 80px #000000;
+    padding-top: 60px;
+
+    text-decoration-line: overline;
+    
+    /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+    background-image: url('uprawnienia1.jpg');
+    color: blanchedalmond;
+  }
+
+  #orange2_tile:hover
+  {
+    box-shadow:inset 0 0 10px #000000;
+    cursor:pointer;
+  }

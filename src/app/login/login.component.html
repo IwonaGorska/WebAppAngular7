@@ -1,0 +1,40 @@
+<div id="titleApp">
+  <h1>
+    {{ title }}
+  </h1>
+</div> 
+
+
+<div id = "background">
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div class="login">
+    <input type="text" placeholder="login" id="login" [(ngModel)] = "username">  
+  <input type="password" placeholder="hasło" id="password" [(ngModel)] = "password">  
+  <!-- <a href="#" class="forgot">forgot password?</a> -->
+
+  <!-- <select id = "comboBox" 
+    ng-model="selectedNum"
+    ng-options="n for n in nums">
+  </select>  -->
+
+  <select id = "comboBox" [(ngModel)] = "departmentId">
+    <option *ngFor="let department of departments" value = {{department.id}}>{{department.name}}</option>
+  </select> 
+
+<!-- 
+  [(ngModel)] = "departmentId" 
+  <input type="submit" value="Zaloguj się" routerLink="/home2" (click) = "log(username, password, departamentId)"> -->
+  
+  <input type="submit" value="Zaloguj się" (click) = "onSubmit()">
+  </div>
+  <!-- <div class="shadow"></div> -->
+</div>
+
+<div class="container">
+ <router-outlet></router-outlet>
+</div>
+  
+
+
+
+

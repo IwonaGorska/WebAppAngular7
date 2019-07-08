@@ -1,0 +1,41 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}}
+  </div> 
+  <div id = "line" >
+      |
+  </div>
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+</div> 
+<div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="middle0" style= "clear:both"></div>
+<div class="part"><h2>Identyfikator</h2></div>
+<div class = "textpart">{{user$.id}}</div>
+<div class="part"><h2>Nazwa komputera</h2></div>
+<div class = "textpart">{{user$.computerName}}</div>
+<div class="part"><h2>Nazwa użytkownika na komputerze</h2></div>
+<div class = "textpart">{{user$.username}}</div>
+<div class="part"><h2>Opis</h2></div>
+<div class = "textpart">{{user$.description}}</div>
+
+

@@ -1,0 +1,174 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user.username}} 
+  </div>  
+  <div id = "tracking" > 
+      {{logName}} 
+  </div>
+  <div id = "line" >
+      |
+  </div> 
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="middle0" style= "clear:both"></div> 
+<div id="block">
+  <div  class = "question" >Identyfikator użytkownika: <font   class = "label" color = "blue" >{{user.id}} </font> </div>
+  <div class = "question" *ngIf = "!settings.isCurrentTransferMonitored">
+    <p>Czy monitorować obecny transfer: 
+        <font color = "red" >  
+      <label  class = "label"> NIE   </label> </font> 
+      <button class = "buttons" (click)="updateCurrentTransferMonitorStatus(settings.id, settings.isCurrentTransferMonitored)" >ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isCurrentTransferMonitored">
+    <p>Czy monitorować obecny transfer:                                   
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons"  (click)="updateCurrentTransferMonitorStatus(settings.id, settings.isCurrentTransferMonitored)" >ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isCurrentTransferMonitored">
+    <p> Co ile czasu monitorować obecny transfer:    
+      <font color = "blue" >
+        <label   class = "label" *ngIf = "settings.currentTransferMonitorFrequency === 1" >{{settings.currentTransferMonitorFrequency}} sekunda </label> 
+        <label   class = "label" *ngIf = "settings.currentTransferMonitorFrequency > 1 && settings.currentTransferMonitorFrequency < 5" >{{settings.currentTransferMonitorFrequency}} sekundy </label>
+        <label   class = "label" *ngIf = "settings.currentTransferMonitorFrequency >=5" >{{settings.currentTransferMonitorFrequency}} sekund  </label>
+      </font> 
+      <input type="number" [(ngModel)]= 'currentTransferFrequency' placeholder = "Nowa liczba" style="width: 90px; margin-left: 25px; margin-right: 15px"/> 
+      <button class = "buttons"  (click)="updateCurrentTransferFrequency(settings.id, currentTransferFrequency)" (keyup.enter)="updateCurrentTransferFrequency(settings.id, currentTransferFrequency)">ZMIEŃ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "!settings.isUploadSpeedMonitored">
+    <p>Czy monitorować prędkość wysyłania:  
+        <font color = "red" >  
+      <label  class = "label"  >NIE   </label> </font> 
+      <button class = "buttons" (click)="updateUploadSpeedMonitorStatus(settings.id, settings.isUploadSpeedMonitored)">ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isUploadSpeedMonitored">
+    <p>Czy monitorować prędkość wysyłania:
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons" (click)="updateUploadSpeedMonitorStatus(settings.id, settings.isUploadSpeedMonitored)">ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "!settings.isDownloadSpeedMonitored">
+    <p>Czy monitorować prędkość pobierania:  
+        <font color = "red" >  
+      <label  class = "label"  >NIE   </label> </font> 
+      <button class = "buttons" (click)="updateDownloadSpeedMonitorStatus(settings.id, settings.isDownloadSpeedMonitored)">ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isDownloadSpeedMonitored">
+    <p>Czy monitorować prędkość pobierania:  
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons" (click)="updateDownloadSpeedMonitorStatus(settings.id, settings.isDownloadSpeedMonitored)">ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "!settings.isTransferMonitoredSinceComputerStarted">
+    <p>Czy monitorować transfer od włączenia komputera: 
+        <font color = "red" >  
+      <label  class = "label"  >NIE   </label> </font> 
+      <button class = "buttons" (click)="updateSinceStartedTransferMonitorStatus(settings.id, settings.isTransferMonitoredSinceComputerStarted)">ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isTransferMonitoredSinceComputerStarted">
+    <p>Czy monitorować transfer od włączenia komputera:   
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons" (click)="updateSinceStartedTransferMonitorStatus(settings.id, settings.isTransferMonitoredSinceComputerStarted)">ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isTransferMonitoredSinceComputerStarted">
+    <p> Co ile czasu monitorować transfer od włączenia komputera:
+      <font color = "blue" >
+        <label   class = "label" *ngIf = "settings.transferSinceComputerStartedMonitorFrequency === 1" >{{settings.transferSinceComputerStartedMonitorFrequency}} sekunda </label> 
+        <label   class = "label" *ngIf = "settings.transferSinceComputerStartedMonitorFrequency > 1 && settings.transferSinceComputerStartedMonitorFrequency < 5" >{{settings.transferSinceComputerStartedMonitorFrequency}} sekundy </label>
+        <label   class = "label" *ngIf = "settings.transferSinceComputerStartedMonitorFrequency >=5" >{{settings.transferSinceComputerStartedMonitorFrequency}} sekund  </label>
+      </font> 
+        <input type="number" [(ngModel)]= 'sinceStartTransferFrequency' placeholder = "Nowa liczba" style="width: 90px; margin-left: 25px; margin-right: 15px"/> 
+        <button class = "buttons"  (click)="updateSinceStartTransferFrequency(settings.id, sinceStartTransferFrequency)" >ZMIEŃ</button>
+    </p>
+  </div>
+
+  <div  class = "question" *ngIf = "!settings.shouldPing">
+    <p>Czy sprawdzać połączenie: 
+        <font color = "red" >  
+      <label  class = "label"  >NIE   </label> </font> 
+      <button class = "buttons" (click)="updateShouldPing(settings.id, settings.shouldPing)">ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.shouldPing">
+    <p>Czy sprawdzać połączenie: 
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons" (click)="updateShouldPing(settings.id, settings.shouldPing)">ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.shouldPing">
+    <p> Adres używany do sprawdzania połączenia:  
+      <font color = "blue" >
+        <label  class = "label"  > {{settings.pingAddress}}  </label> 
+      </font> 
+      <input type="text" [(ngModel)]= 'address' placeholder = "Nowy adres"  style="width: 300px; margin-left: 25px; margin-right: 15px"/> 
+      <button class = "buttons"  (click)="updatePingAddress(settings.id, address)" >ZMIEŃ</button>
+    </p>
+  </div>
+
+  <div  class = "question" *ngIf = "settings.shouldPing">
+    <p> Co ile czasu sprawdzać połączenie:  
+      <font color = "blue" >
+        <label   class = "label" *ngIf = "settings.pingFrequency === 1" >{{settings.pingFrequency}} sekunda </label> 
+        <label   class = "label" *ngIf = "settings.pingFrequency > 1 && settings.pingFrequency < 5" >{{settings.pingFrequency}} sekundy </label>
+        <label   class = "label" *ngIf = "settings.pingFrequency >=5" >{{settings.pingFrequency}} sekund  </label>
+      </font> 
+      <input type="number" [(ngModel)]= 'pingFrequency' placeholder = "Nowa liczba" style="width: 90px; margin-left: 25px; margin-right: 15px"/> 
+      <button class = "buttons"  (click)="updatePingFrequency(settings.id, pingFrequency)" >ZMIEŃ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "!settings.isNetworkCardInfoMonitor">
+    <p>Czy zbierać informacje o karcie sieciowej: 
+        <font color = "red" >  
+      <label  class = "label"  >NIE   </label> </font> 
+      <button class = "buttons" (click)="updateNetworkCardMonitorStatus(settings.id, settings.isNetworkCardInfoMonitor)">ROZPOCZNIJ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isNetworkCardInfoMonitor">
+    <p>Czy zbierać informacje o karcie sieciowej:  
+      <font color = "green" >  
+      <label  class = "label" >TAK     </label> </font>
+      <button class = "buttons" (click)="updateNetworkCardMonitorStatus(settings.id, settings.isNetworkCardInfoMonitor)">ZAKOŃCZ</button>
+    </p>
+  </div>
+  <div  class = "question" *ngIf = "settings.isNetworkCardInfoMonitor"> 
+    <p> Co ile czasu zbierać informacje o karcie sieciowej: 
+      <font color = "blue" >
+          <label   class = "label" *ngIf = "settings.networkCardMonitorFrequency === 1" >{{settings.networkCardMonitorFrequency}} sekunda </label> 
+          <label   class = "label" *ngIf = "settings.networkCardMonitorFrequency > 1 && settings.networkCardMonitorFrequency < 5" >{{settings.networkCardMonitorFrequency}} sekundy </label>
+          <label   class = "label" *ngIf = "settings.networkCardMonitorFrequency >=5" >{{settings.networkCardMonitorFrequency}} sekund  </label>
+      </font> 
+      <input type="number" [(ngModel)]= 'cardFrequency' placeholder = "Nowa liczba" style="width: 90px; margin-left: 25px; margin-right: 15px"/> 
+      <button class = "buttons"  (click)="updateCardFrequency(settings.id, cardFrequency)" >ZMIEŃ</button>
+    </p>
+  </div>
+
+</div>

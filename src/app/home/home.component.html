@@ -1,0 +1,37 @@
+<div id="titleApp">
+  <h1>
+    {{ title }}
+  </h1>
+</div> 
+<div id="container2">
+    <!-- <div id="left"> -->
+    <div id="filtr">
+        <input id= "input" type="text" [(ngModel)]='filtr' placeholder= "Wyszukaj użytkownika"/>
+    </div>
+
+
+    <h2>Użytkownicy</h2>
+    <ul>
+      <li *ngFor="let user of users$ | paginate: { itemsPerPage: 2, currentPage: p }">
+        <div class = "user">
+          <p>
+            <a routerLink="/details/{{user.id}}" style="color:black; text-decoration: none; font-size: 23px">{{ user.username }}</a>
+            <!-- <label class='toggle-label' >
+              <input type="checkbox" />
+                <span class='back'>
+                <span class='toggle'></span>
+                <span class='label on'>ON</span>
+                <span class='label off'>OFF</span>  
+              </span>
+            </label> -->
+          </p>
+        </div>
+      </li>
+    </ul>
+    <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia"
+    nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+  </div>
+ 
+
+  
+

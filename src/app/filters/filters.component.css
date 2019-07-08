@@ -1,0 +1,52 @@
+.title
+{
+  background-color: #179e88;
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: 900;
+}
+
+.title:hover
+{
+  cursor: default;
+}
+
+#filtersList
+{
+  padding: 5px;
+}
+
+.filtrContent
+{
+  padding: 5px;
+  background-color: rgb(212, 221, 80);
+  float: left;
+  font-weight: 600;
+}
+
+.filtrContent:hover
+{
+  cursor: default;
+}
+
+.icon
+{
+  padding: 5px;
+  float: left;
+}
+
+.icon:hover
+{
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#placeForNew
+{
+  background-color: aliceblue;
+  padding: 5px;
+  float: left;
+  width: 400px;
+}
+

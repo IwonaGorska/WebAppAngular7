@@ -1,0 +1,62 @@
+#container
+{
+  height: 250px;
+}
+
+#blue_tile{
+  background-color: #1552ad;
+  width: 380px;
+  height: 70px;
+  float: left;
+  margin: 20px;
+  box-shadow:inset 0 0 80px #000000;
+  padding-top: 60px;
+  /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+  text-decoration-line: overline;
+  background-image: url('ustawienia_internetowe2.jpg');
+  color: blanchedalmond;
+}
+
+#blue_tile:hover
+{
+  box-shadow:inset 0 0 10px #000000;
+  cursor:pointer;
+}
+
+#green_tile{
+  background-color: #5aa11f;
+  width: 380px;
+  height: 70px;
+  float: left;
+  margin: 20px;
+  box-shadow:inset 0 0 80px #000000;
+  padding-top: 60px;
+  /*tutaj jakieś dodatkowe style, jak np. box-shadow, text-shadow, border, itp.*/
+
+  text-decoration-line: overline;
+  background-image: url('dane_internetowe.jpg');
+  color: blanchedalmond;
+}
+
+#green_tile:hover
+{
+  box-shadow:inset 0 0 10px #000000;
+  cursor:pointer;
+}
+
+.middle
+{
+  width: 800px;
+  height: 5px;
+}
+
+#down
+{
+  width: 850px;
+  height: 150px;
+  margin-left: 75px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+

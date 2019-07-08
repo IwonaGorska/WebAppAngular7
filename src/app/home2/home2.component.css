@@ -1,0 +1,126 @@
+#titleApp
+{
+  box-shadow:inset 0 0 2000px #65c709;
+  width: 1000px;
+  height: 150px;
+  /* height: 100px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  padding-top: 0px;
+  font-size: 50px;
+  color: #044404;
+  text-align: center;
+  border-bottom-style: groove;
+  border-radius: 20px;
+  margin-top: -50px;
+}
+
+#filtr
+{
+    /* padding-left: 20px; */
+    /* padding-left: 0px;
+    margin-top: 5px; */
+    height: 40px;
+    width: 430px;
+    /* background-color: aqua; */
+    /* margin-left: 650px; */
+    margin-left: 0px;
+}
+
+#container2
+{
+  /* box-shadow:inset 0 0 5500px #aaa703; bbb806*/ 
+  /* box-shadow:inset 0 0 300px #bbb806; */
+  box-shadow:inset 0 0 300px #65c709;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  padding-top: 0px;
+  color: #164109;
+  font-size: 22px;
+  height: 420px;
+  /* background-color: #bbb806; */
+}
+
+#left
+{
+  width: 580px;
+  /* background-color: aqua; */
+  float: left;
+}
+
+
+
+#right
+{
+  float: left;
+  padding-top: 5px;
+  width: 400px;
+  /* height: 400px;   */
+  /* text-align: center; */
+  /* background-image: url('logo_transparent.png');
+  border-color: black; */
+  border-width: 2px; 
+} 
+
+/* #rightTop
+{ */
+  /* text-align: center; */
+/* }  */
+
+#rightDown
+{
+  width: 350px;
+  height: 340px;
+  background-image: url('logo_transparent.png');
+  /* background-color: #032c09; */
+  margin: 0px;
+  padding: 0px;
+} 
+
+.middle
+{
+  width: 980px;
+  height: 5px;
+  /* background-color: blue; */
+}
+
+.user
+{
+  font-weight: 600;
+}
+
+.user:hover
+{
+  /* border-style: dashed; */
+  border-style: none;
+  border-color: #164109;
+  /* border-color:rgb(129, 223, 75); */
+  background-color: rgb(129, 223, 75);
+  cursor: pointer;
+}
+
+#LogoutHomePage
+{
+  /* text-align: left; */
+  font-weight: 700;
+  padding-left: 140px;
+  padding-top: 5px;
+  float: left;
+  /* width: 90px; */
+  color: rgb(9, 145, 61);
+  /* background-color: rgb(253, 228, 2); */
+}
+
+#LogoutHomePage:hover
+{
+  color: #032c09;
+  cursor: pointer;
+}
+
+
+

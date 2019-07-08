@@ -1,0 +1,51 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}} 
+  </div> 
+  <div id = "line" >
+      |
+  </div>
+  <div id = "Logout" (click)="logout()">
+      Wyloguj 
+  </div> 
+  <div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }} 
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="block" >
+  <div class="filtr">
+    <div class="refresh">
+        <i class="material-icons" (click)=reset()>cached</i>
+    </div>
+    <input class= "input" type="text" [(ngModel)]='query' placeholder= "Wyszukaj frazę"/>
+    <button class= "search" (click)=search()>Szukaj</button>
+    <div class="middle" style= "clear:both"></div>
+  </div>
+  <div class="message" *ngFor="let messageData of messageDatas | paginate: { itemsPerPage: 10, currentPage: p }" style="white-space:pre-wrap;">
+    
+        <div class="date">
+          {{messageData.messageTimestamp|date: 'dd/MM/yyyy, HH:mm:ss'}}
+        </div>
+        {{messageData.message}}
+  </div>
+  <pagination-controls (pageChange)="p = $event" previousLabel="Poprzednia"
+  nextLabel="Następna" style="font-size: 16px; text-align: center"></pagination-controls>
+</div>
+
+<router-outlet></router-outlet>

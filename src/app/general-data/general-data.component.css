@@ -1,0 +1,31 @@
+.part
+{
+  box-shadow:inset 0 0 50px #aa9a0a;
+  width: 980px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  font-size: 10px;
+  padding: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #475302;
+  border-color: #cc5a0e;
+  border-bottom-style: groove;
+}
+
+.textpart
+{
+  width: 980px;
+  font-weight: 600;
+  /* height: 30px; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  padding: 10px;
+  /* background-color: rgb(140, 209, 209); */
+  background-color: rgb(172, 214, 55);
+}

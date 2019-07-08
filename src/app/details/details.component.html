@@ -1,0 +1,63 @@
+<div id = "begining">  
+  <div id = "tracked" >
+      Obserwujesz użytkownika {{user$.username}} 
+  </div>
+  <div id = "tracking" >
+      {{logName}}
+  </div>
+  <div id = "line" >
+      |
+  </div> 
+  <div id = "Logout" (click)="logout()" >
+      Wyloguj 
+  </div> 
+<div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+    <div id="username" ><h1>{{ user$.username }}</h1> </div>
+    <div id="home">
+        <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+          <i class="material-icons">home</i>
+        </a>
+    </div>
+</div>
+<div class="middle" style= "clear:both"></div>
+<div id="container"> 
+  <div id="top">
+    <div id="red_tile" routerLink="/general-data/{{user$.id}}" style="color:white; text-decoration: none; font-weight: 700; text-align: center">
+      <div class="black">
+        <i class="material-icons">personal_video</i>  Dane komputerowe
+      </div>
+    </div> 
+    <div id="green_tile" routerLink="/usb/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">usb</i>   Urządzenia i pamięć 
+      </div>
+    </div>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+  
+  <div id="down" >
+    <div id="gold_tile" routerLink="/network/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">wifi</i>   Połączenie internetowe
+      </div>
+    </div>
+    <div id="purple_tile" routerLink="/keylogger/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">fingerprint</i>   Monitorowanie aktywności
+      </div>
+    </div>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+
+  <div id="secondDown" >
+    <div id="orange_tile" routerLink="/processes/{{user$.id}}" style="text-align:center; color: white; text-decoration: none; font-weight: 700" >
+      <div class="black">
+        <i class="material-icons">poll</i>   Procesy
+      </div>
+    </div>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+  
+</div>

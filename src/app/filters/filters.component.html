@@ -1,0 +1,59 @@
+<div id = "begining">
+  <div id = "tracked" >
+    Obserwujesz użytkownika {{user$.username}} 
+  </div>  
+  <div id = "tracking" >
+      {{logName}} 
+  </div> 
+  <div id = "line" >
+      |
+  </div>
+  <div id = "Logout" (click)="logout()" >
+      Wyloguj 
+  </div> 
+<div class="middle" style= "clear:both"></div>                      
+</div>
+<div id="container1">
+  <div id="sectionTitle">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <div id="back">
+    <i (click)="goBack()" class="material-icons">arrow_back</i>
+  </div>
+  <div id="home">
+      <a routerLink="/home2" [class.activated]="currentUrl == '/home2'">
+        <i class="material-icons">home</i>
+      </a>
+  </div>
+</div>
+<div id="block" >
+  <div class="title">
+    Aktywne filtry
+  </div>
+
+  <div id="filtersList" *ngFor="let filter of filters ">
+      <div class="filtrContent">
+        {{filter.filter}}
+      </div>
+      <div class="icon">
+        <i (click)="deleteFilter(filter.id)" class="material-icons">delete</i>
+      </div>
+      <div class="middle" style= "clear:both"></div>
+    </div>
+
+  <div class="title">
+    Dodaj filtr
+  </div>
+  <div id="placeForNew">
+    <input type="text" [(ngModel)]='newFiltr' style="width: 395px"/>
+  </div>
+  <div class="icon">
+    <i (click)="postFilter(user$.id)" class="material-icons">add_box</i>
+  </div>
+  <div class="middle" style= "clear:both"></div>
+  
+</div>
+
+<router-outlet></router-outlet>
