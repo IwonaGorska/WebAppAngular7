@@ -1,4 +1,7 @@
 # LogIT
+-----------------------------------------
+Aplikacja frontendowa stworzona przy użyciu HTML5, CSS3, Typescript3, Angular7. Jest powiązana z bazą danych PostgreSQL oraz backendem javovym i modułem pythonowym śledzącym użytkownika komputera i samo działanie komputera. Stworzona w ramach projektu z programowania zespołowego na WMII UMK. 
+-----------------------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
 
